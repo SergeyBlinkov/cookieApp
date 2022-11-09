@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useRef, useState} from 'react';
+import {SwitchTransition, CSSTransition} from "react-transition-group";
 import './App.css';
+import './styleComponents.css'
+import StartComponent from "./Components/StartComponent";
+import GameComponent from "./Components/GameComponent";
+
+type Init = {
+    type:string,
+    amount:number,
+    values:number
+}
+const init:Init = {
+    type:'ascend',
+    amount:2,
+    values:591
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [page, setPage] = useState(false)
+    const [storage,setStorage] = useState(init)
+    const StartPageRef = useRef(null)
+    const GamePageRef = useRef(null)
+    const nodeRef = page ? GamePageRef : StartPageRef
+    return (
+        <SwitchTransition mode={'out-in'}>
+            <CSSTransition
+                key={page ? "GamePage" : "StartPage"}
+                nodeRef={nodeRef}
+                timeout={500}
+                classNames={'ChangePage'}
+            >
+                {page ? <div className={'container'} ref={GamePageRef}>
+                    <GameComponent storage={storage} setPage={setPage}/>
+                </div> : <div className={'container'} ref={StartPageRef}>
+                  <StartComponent setStorage={setStorage} ChangeBoolean={setPage}/>
+                </div>}
+            </CSSTransition>
+        </SwitchTransition>
+    );
 }
 
 export default App;
