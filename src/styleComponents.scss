@@ -203,6 +203,7 @@
     align-items: center;
     height: 320px;
 
+
     img {
       left: 50%;
       transform: translateX(-50%);
@@ -220,10 +221,8 @@
 
   .emptyBlock {
     display: flex;
-    position: absolute;
+    margin: 0 95px 0 80px;
     bottom: 0;
-    left: 85px;
-    width: 100%;
     height: 305px;
     align-items: center;
     -webkit-touch-callout: none;
@@ -421,5 +420,26 @@
     position: absolute;
     bottom: 0;
     right: 0;
+  }
+}
+.BehindCookies {
+  position: absolute;
+  width: 100%;
+  background: #cbb797;
+  height: 100%;
+}
+.BehindCoins {
+  background: #654b21 !important;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+@media screen and (max-width: 1200px) {
+  .MainGame  {
+  width: 100%;
+    overflow: hidden;
+  }
+  .emptyBlock {
+    margin: 0 16.5% 0 15% !important;
   }
 }

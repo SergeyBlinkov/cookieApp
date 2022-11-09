@@ -26,19 +26,19 @@ const BackCookiesRight = styled.img`
 export const BehindSceneCookies = () => {
 
     return (
-        <>
+        <div className={'BehindCookies'}>
             <BackCookiesLeft src={backgroundCookies1} alt={'backgroundCookies'}/>
             <BackCookiesRight src={backgroundCookies2} alt={'backgroundCookiesSm'}/>
-        </>
+        </div>
     )
 }
 
 export const BehindSceneCoins = () => {
     return (
-        <>
+        <div className={'BehindCoins'}>
             <BackCookiesLeft src={backgroundCoinsLeft} alt={'backgroundCoins'}/>
             <BackCookiesRight src={backgroundCoinsRight} alt={'backgroundCoinsRight'}/>
-        </>
+        </div>
     )
 }
 

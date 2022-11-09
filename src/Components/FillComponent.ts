@@ -14,7 +14,7 @@ type Storage = {
 }
 
 let cookies: Cookies[] = []
-const currentScene = allScenes[0]
+const currentScene = allScenes[Math.round(Math.random())]
 const FillComponent = (storage: Storage) => {
 
 

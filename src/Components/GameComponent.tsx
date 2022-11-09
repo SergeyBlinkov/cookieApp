@@ -33,6 +33,7 @@ interface props {
 function GameComponent({storage,setPage}:props) {
     const {cookies, currentScene} = FillComponent(storage)
     const MainGameRef = useRef<HTMLDivElement | null>(null)
+    const wrapperRef= useRef<HTMLDivElement | null>(null)
     const [finish, setFinish] = useState(false)
     const finishArr = []
     const finishRef= useRef(null)
@@ -46,10 +47,12 @@ function GameComponent({storage,setPage}:props) {
 
     debugger
     useEffect(() => {
-        if (!check && emptyBlock.current) {
+        if (!check && emptyBlock.current && wrapperRef.current) {
         const style = emptyBlock.current.style
+            const wrapperStyle = wrapperRef.current.style
         style.flexDirection = 'row-reverse'
         style.left = '-95px'
+            wrapperStyle.justifyContent = 'flex-end'
 
     }
        for (let i = 0; i < storage.amount; i++) {
@@ -90,6 +93,7 @@ function GameComponent({storage,setPage}:props) {
                    const centerWidth = elemBelow?.clientWidth / 2
                    const centerHeight = elemBelow?.clientHeight / 2
                    const data: string | null = elemBelow?.getAttribute('data-value')
+                   console.log(elemBelow,'elemBelow',data,'data')
                    if (value !== data || (data && +data !== compareArray[compareArray.length - 1]?.number)) {
                        target.style.top = cookiesPosition[i]?.yPos + 'px'
                        target.style.left = cookiesPosition[i]?.xPos + 'px'
@@ -131,13 +135,13 @@ function GameComponent({storage,setPage}:props) {
                    moveAt(mouseEvent.pageX, mouseEvent.pageY);
                }
                target.onmouseup = function (ev) {
-
                    document.onmousemove = null;
                    const value: string | null = target.getAttribute('data-value')
                    const elemBelow: Element = document.elementsFromPoint(ev.pageX, ev.pageY).filter(newId => newId.id === 'emptyId')[0]
                    const centerWidth = elemBelow?.clientWidth / 2
                    const centerHeight = elemBelow?.clientHeight / 2
                    const data: string | null = elemBelow?.getAttribute('data-value')
+
                    if ((value !== data) || (data && +data !== compareArray[compareArray.length -1]?.number)) {
                        target.style.top = cookiesPosition[i].yPos + 'px'
                        target.style.left = cookiesPosition[i].xPos + 'px'
@@ -206,7 +210,7 @@ function GameComponent({storage,setPage}:props) {
                         <p>По убыванию</p>
                     </div>}
                 </div>
-                <div className={'emptyBlockWrapper'}>
+                <div className={'emptyBlockWrapper'} ref={wrapperRef}>
                     <img src={currentScene.emptySlots} alt={'emptySlots'}/>
                     <div className={"emptyBlock"} ref={emptyBlock}>
                         {Array.from(Array(storage.amount)).map((_, index) => {
