@@ -21,7 +21,6 @@ const FillComponent = (storage: Storage) => {
     useMemo(() => {
         if (cookies.length === storage.amount) return
         for (let i = 0; i < +storage.amount; i++) {
-            debugger
 
             let check = true
             const value = Math.floor(Math.random() * (+storage.values - 1))
