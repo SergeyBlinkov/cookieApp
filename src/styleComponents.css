@@ -142,12 +142,12 @@
   text-align: center;
   display: flex;
   margin-top: 1%;
-  width: 50%;
+  width: 70%;
   align-items: center;
   flex-direction: column;
 }
 .MainGame .MainGame_firstSlide .firstSlide_values {
-  width: 50%;
+  width: 70%;
   display: flex;
   margin-top: 1%;
   flex-direction: column;
